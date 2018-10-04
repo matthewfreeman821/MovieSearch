@@ -28,14 +28,15 @@ function getMovies(searchText) {
 }
 
 function movieSelected(id){
-    sessionStorage.setItem('movieId', id);//Issue is somewhere here, not storing as key value pair, only storing id in sessionStorage
+    var movieId = 'movieId';
+    sessionStorage.setItem(movieId, id);//Issue is somewhere here, not storing as key value pair, only storing id in sessionStorage
     window.location = 'movie.html';
     return true;
 };
 
 function getMovie() {
-    let movieId = sessionStorage.getItem('movieId');
-    axios.get('http://www.omdbapi.com/?i=tt3896198&apikey=4e37285d&i=' + movieId)
+    let imdbId = sessionStorage.getItem('movieId');
+    axios.get('http://www.omdbapi.com/?i=tt3896198&apikey=4e37285d&i=' + imdbId)
         .then((response) => {
             console.log(response);
             let movie = response.data;
